@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ShopEase | Products</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #222;
+        }
+
+        /* Navbar */
+        header {
+            background-color: #111827;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #dbeafe, #eff6ff);
+            text-align: center;
+            padding: 55px 20px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            color: #555;
+            font-size: 18px;
+        }
+
+        /* Search */
+        .search-section {
+            padding: 30px 7%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-box {
+            width: 500px;
+            max-width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: #2563eb;
+        }
+
+        /* Filters */
+        .filters {
+            padding: 10px 7% 30px;
+            text-align: center;
+        }
+
+        .filter-btn {
+            border: none;
+            background-color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        /* Products */
+        .products-container {
+            padding: 20px 7% 60px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-image {
+            height: 220px;
+            background-color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 85px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 8px;
+            color: #111827;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .rating {
+            color: #f59e0b;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #2563eb;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .old-price {
+            color: #999;
+            font-size: 14px;
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+
+        .add-cart {
+            width: 100%;
+            margin-top: 15px;
+            padding: 11px;
+            border: none;
+            border-radius: 7px;
+            background-color: #111827;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .add-cart:hover {
+            background-color: #2563eb;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 750px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .page-header h1 {
+                font-size: 34px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+
+        <div class="logo">
+            ShopEase
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="#">Categories</a>
+            <a href="#">Contact</a>
+            <a href="#">🛒 Cart</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Page Header -->
+    <section class="page-header">
+
+        <h1>Our Products</h1>
+
+        <p>
+            Discover our latest products at amazing prices.
+        </p>
+
+    </section>
+
+
+    <!-- Search -->
+    <section class="search-section">
+
+        <input
+            type="text"
+            class="search-box"
+            placeholder="🔍 Search for products..."
+            id="searchInput"
+        >
+
+    </section>
+
+
+    <!-- Category Filters -->
+    <section class="filters">
+
+        <button class="filter-btn active" onclick="filterProducts('all')">
+            All
+        </button>
+
+        <button class="filter-btn" onclick="filterProducts('fashion')">
+            👕 Fashion
+        </button>
+
+        <button class="filter-btn" onclick="filterProducts('electronics')">
+            📱 Electronics
+        </button>
+
+        <button class="filter-btn" onclick="filterProducts('home')">
+            🏠 Home
+        </button>
+
+        <button class="filter-btn" onclick="filterProducts('gaming')">
+            🎮 Gaming
+        </button>
+
+    </section>
+
+
+    <!-- Products -->
+    <section class="products-container">
+
+        <div class="products" id="productList">
+
+
+            <!-- Product 1 -->
+            <div class="product" data-category="fashion">
+
+                <div class="product-image">
+                    👟
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Running Shoes</h3>
+
+                    <p class="product-description">
+                        Comfortable and stylish running shoes
+                        for everyday use.
+                    </p>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <span class="price">$49.99</span>
+                    <span class="old-price">$69.99</span>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Running Shoes', 49.99)">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Product 2 -->
+            <div class="product" data-category="electronics">
+
+                <div class="product-image">
+                    🎧
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Wireless Headphones</h3>
+
+                    <p class="product-description">
+                        Enjoy high-quality music with wireless
+                        noise-free headphones.
+                    </p>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐☆
+                    </div>
+
+                    <span class="price">$79.99</span>
+                    <span class="old-price">$99.99</span>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Wireless Headphones', 79.99)">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Product 3 -->
+            <div class="product" data-category="electronics">
+
+                <div class="product-image">
+                    ⌚
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Smart Watch</h3>
+
+                    <p class="product-description">
+                        Track your fitness, steps and notifications.
+                    </p>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <span class="price">$59.99</span>
+                    <span class="old-price">$79.99</span>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Smart Watch', 59.99)">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Product 4 -->
+            <div class="product" data-category="fashion">
+
+                <div class="product-image">
+                    👕
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Premium T-Shirt</h3>
+
+                    <p class="product-description">
+                        Soft cotton t-shirt with a modern design.
+                    </p>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐☆
+                    </div>
+
+                    <span class="price">$24.99</span>
+                    <span class="old-price">$34.99</span>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Premium T-Shirt', 24.99)">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Product 5 -->
+            <div class="product" data-category="home">
+
+                <div class="product-image">
+                    🪑
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Modern Chair</h3>
+
+                    <p class="product-description">
+                        Comfortable modern chair for your home.
+                    </p>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <span class="price">$89.99</span>
+                    <span class="old-price">$119.99</span>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Modern Chair', 89.99)">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Product 6 -->
+            <div class="product" data-category="home">
+
+                <div class="product-image">
+                    💡
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Smart Lamp</h3>
+
+                    <p class="product-description">
+                        Stylish LED lamp perfect for your bedroom.
+                    </p>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐☆
+                    </div>
+
+                    <span class="price">$29.99</span>
+                    <span class="old-price">$39.99</span>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Smart Lamp', 29.99)">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Product 7 -->
+            <div class="product" data-category="gaming">
+
+                <div class="product-image">
+                    🎮
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Gaming Controller</h3>
+
+                    <p class="product-description">
+                        Responsive wireless controller for gaming.
+                    </p>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <span class="price">$44.99</span>
+                    <span class="old-price">$59.99</span>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Gaming Controller', 44.99)">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Product 8 -->
+            <div class="product" data-category="gaming">
+
+                <div class="product-image">
+                    🕹️
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Gaming Keyboard</h3>
+
+                    <p class="product-description">
+                        Mechanical keyboard with RGB lighting.
+                    </p>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐☆
+                    </div>
+
+                    <span class="price">$69.99</span>
+                    <span class="old-price">$89.99</span>
+
+                    <button class="add-cart"
+                        onclick="addToCart('Gaming Keyboard', 69.99)">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>© 2026 ShopEase. All Rights Reserved.</p>
+
+        <p>Built with ❤️ using HTML, CSS & JavaScript</p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        // Filter products
+        function filterProducts(category) {
+
+            const products = document.querySelectorAll(".product");
+            const buttons = document.querySelectorAll(".filter-btn");
+
+            buttons.forEach(button => {
+                button.classList.remove("active");
+            });
+
+            event.target.classList.add("active");
+
+            products.forEach(product => {
+
+                if (
+                    category === "all" ||
+                    product.dataset.category === category
+                ) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+
+            });
+
+        }
+
+
+        // Search products
+        const searchInput = document.getElementById("searchInput");
+
+        searchInput.addEventListener("input", function () {
+
+            const searchText =
+                searchInput.value.toLowerCase();
+
+            const products =
+                document.querySelectorAll(".product");
+
+            products.forEach(product => {
+
+                const productName =
+                    product.querySelector("h3")
+                        .textContent
+                        .toLowerCase();
+
+                if (productName.includes(searchText)) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+
+            });
+
+        });
+
+
+        // Add product to cart
+        function addToCart(productName, price) {
+
+            alert(
+                productName +
+                " has been added to your cart! 🛒\nPrice: $" +
+                price
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+
